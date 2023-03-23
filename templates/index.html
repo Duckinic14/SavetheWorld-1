@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weekly Planner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <h1>Weekly Planner</h1>
+    <form method="POST" action="/">
+      <table>
+        <tr>
+          <th></th>
+          {% for day in days_of_week %}
+            <th>{{ day }}</th>
+          {% endfor %}
+        </tr>
+        {% for time in times_of_day %}
+          <tr>
+            <th>{{ time }}</th>
+            {% for day in days_of_week %}
+              <td><input type="text" name="{{ day }}_{{ time }}"></td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </table>
+
+      
+<div class="calculator">
+  <h2>Calculator</h2>
+  <p>Enter the number of hours spent on each task for a day:</p>
+  <form>
+    <label for="task1">Task 1:</label>
+    <input type="number" id="task1" name="task1" value="0"><br><br>
+    <label for="task2">Task 2:</label>
+    <input type="number" id="task2" name="task2" value="0"><br><br>
+    <label for="task3">Task 3:</label>
+    <input type="number" id="task3" name="task3" value="0"><br><br>
+    <label for="task4">Task 4:</label>
+    <input type="number" id="task4" name="task4" value="0"><br><br>
+    <label for="task5">Task 5:</label>
+    <input type="number" id="task5" name="task5" value="0"><br><br>
+    <label for="task6">Task 6:</label>
+    <input type="number" id="task6" name="task6" value="0"><br><br>
+    <label for="task7">Task 7:</label>
+    <input type="number" id="task7" name="task7" value="0"><br><br>
+    <button type="button" onclick="calculate()">Calculate</button>
+  </form>
+  <p>Total number of hours spent that day: <span id="total"></span></p>
+</div>
+
+<script>
+  function calculate() {
+    var task1 = parseFloat(document.getElementById('task1').value);
+    var task2 = parseFloat(document.getElementById('task2').value);
+    var task3 = parseFloat(document.getElementById('task3').value);
+    var task4 = parseFloat(document.getElementById('task4').value);
+    var task5 = parseFloat(document.getElementById('task5').value);
+    var task6 = parseFloat(document.getElementById('task6').value);
+    var task7 = parseFloat(document.getElementById('task7').value);
+    var total = task1 + task2 + task3 + task4 + task5 + task6 + task7;
+    document.getElementById('total').innerHTML = total;
+    // Easter egg
+    if (total === 40) {
+      window.location.href = "https://www.youtube.com/c/twosetviolin";
+    }
+  }
+
+  
+</script>
+
+</body>
+</html>
